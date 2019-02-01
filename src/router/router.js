@@ -9,6 +9,7 @@ import BoardView from '../components/BoardView.vue';
 import BoardForm from '../components/BoardForm.vue';
 import Profile from '../components/Profile.vue';
 import Gallery from '../components/Gallery.vue';
+import Wiki from '../components/Wiki.vue';
 import AlbumForm from '../components/AlbumForm.vue';
 import Test from '../components/Test.vue';
 import NoAuth from '../components/NoAuth.vue';
@@ -75,6 +76,11 @@ const router = new Router({
             path: '/gallery',
             name: '갤러리',
             component: Gallery
+        },
+        {
+            path: '/wiki',
+            name: '위키',
+            component: Wiki
         },
         {
             path: '/gallery/upload',
