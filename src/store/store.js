@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import RestAPI from '../constants/RestAPI';
+// import wiki from '../service/wiki';
 
 Vue.use(Vuex);
 
@@ -37,9 +38,11 @@ export default new Vuex.Store({
         // 로그인 후 넘어갈 url
         nextDestination: '/',
         // 카테고리
-        boardCategories: []
+        boardCategories: [],
+        // 위키
+        wiki: null,
     },
-    getters: {
+    getters: { // state 값 가져오기
         getBoard(state) {
             return state.board;
         },
@@ -60,9 +63,12 @@ export default new Vuex.Store({
         },
         getBoardCategories(state) {
             return state.boardCategories;
-        }
+        },
+        getWiki(state) {
+            return state.wiki;
+        },
     },
-    mutations: {
+    mutations: { // state 의 값 변경
         fetchBoard(state, boardData) {
             state.board = boardData;
         },
@@ -91,9 +97,12 @@ export default new Vuex.Store({
         },
         fetchBoardCategories(state, boardCategoryData) {
             state.boardCategories = boardCategoryData;
-        }
+        },
+        fetchWiki(state, wiki) {
+            state.wiki = wiki;
+        },
     },
-    actions: {
+    actions: { // state 값 변경 비동기
         fetchBoard(state, boardId) {
             return axios.get(RestAPI.SERVER_DOMAIN + 'boards/view/' + boardId)
                 .then(response => {
@@ -142,6 +151,15 @@ export default new Vuex.Store({
             return axios.get(RestAPI.SERVER_DOMAIN + 'boards/categories')
                 .then(response => {
                     state.commit('fetchBoardCategories', response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        fetchWiki(state, wikiTitle) {
+            return axios.get(RestAPI.SERVER_DOMAIN + 'wiki/search/' + wikiTitle)
+                .then(response => {
+                    state.commit('fetchWiki', response.data.wiki);
                 })
                 .catch(error => {
                     console.log(error);

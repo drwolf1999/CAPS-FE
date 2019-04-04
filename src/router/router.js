@@ -13,6 +13,8 @@ import AlbumForm from '../components/AlbumForm.vue';
 import Test from '../components/Test.vue';
 import NoAuth from '../components/NoAuth.vue';
 import PageNotFound from '../components/PageNotFound.vue';
+import Wiki from '../components/Wiki.vue';
+import WikiForm from '../components/WikiForm';
 
 import store from '../store/store';
 
@@ -92,6 +94,21 @@ const router = new Router({
             path: '/noauth',
             name: '권한 필요!',
             component: NoAuth
+        },
+        {
+            path: '/wiki',
+            name: '위키',
+            component: Wiki,
+        },
+        {
+            path: '/wiki/search/:wikiTitle',
+            name: '위키',
+            component: Wiki,
+        },
+        {
+            path: '/wiki/add/:wikiTitle',
+            name: '위키',
+            component: WikiForm,
         },
         {
             path: '*',
