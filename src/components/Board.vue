@@ -4,6 +4,7 @@
         <span>전체 게시판</span>
     </h3>
     <hr />
+    {{ boards }}
     <table class="table table-hover">
         <thead>
             <tr>
