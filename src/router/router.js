@@ -100,11 +100,11 @@ const router = new Router({
             name: '권한 필요!',
             component: NoAuth
         },
-        {
-            path: '/wiki',
-            name: '위키',
-            component: Wiki,
-        },
+        // {
+        //     path: '/wiki',
+        //     name: '위키',
+        //     component: Wiki,
+        // },
         {
             path: '/wiki/search/:wikiTitle',
             name: '위키',
