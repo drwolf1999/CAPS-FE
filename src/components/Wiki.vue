@@ -53,7 +53,7 @@
 
 <script>
     import WikiService from '../service/wiki';
-    import WikiForm from "./WikiForm";
+    import WikiForm from './WikiForm';
 
     export default {
         components: {WikiForm},
@@ -61,7 +61,7 @@
             return {
                 isModifying: false,
                 SearchQuery: '',
-                wikiTitle: this.$route.params.wikiTitle === undefined ? "" : this.$route.params.wikiTitle,
+                wikiTitle: this.$route.params.wikiTitle === undefined ? '' : this.$route.params.wikiTitle,
                 Wiki: this.$store.getters.getWiki,
                 isSearching: false,
             };
@@ -71,12 +71,12 @@
             // wikiTitle: String,
         },
         mounted() {
-            this.fetch_wiki(this.wikiTitle === "" ? '대문' : this.wikiTitle);
+            this.fetch_wiki(this.wikiTitle === '' ? '대문' : this.wikiTitle);
             // this.$store.dispatch('fetchWiki', this.wikiTitle === "" ? '대문' : this.wikiTitle);
         },
         computed: {
             isSearchQueryValid() {
-                return this.SearchQuery !== "";
+                return this.SearchQuery !== '';
             },
         },
         methods: {
@@ -147,7 +147,6 @@
                     .then((response) => {
                         this.Wiki = response.data.wiki;
                         this.SearchQuery = '';
-                        this.$router.push(nextDestination);
                     })
                     .catch(err => {
                         if (err) throw err;

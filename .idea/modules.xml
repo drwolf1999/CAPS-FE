@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CAPS-FE.iml" filepath="$PROJECT_DIR$/.idea/CAPS-FE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CAPS-WAS/.idea/CAPS-WAS.iml" filepath="$PROJECT_DIR$/../CAPS-WAS/.idea/CAPS-WAS.iml" />
+      <module fileurl="file:///home/kali/Documents/web_application/new-unitsoft-intranet/.idea/new-unitsoft-intranet.iml" filepath="/home/kali/Documents/web_application/new-unitsoft-intranet/.idea/new-unitsoft-intranet.iml" />
+    </modules>
+  </component>
+</project>
