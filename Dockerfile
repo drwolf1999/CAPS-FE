@@ -32,6 +32,9 @@ RUN npm cache clean -f
 RUN vue build
 
 # copy the built app to our served directory
+RUN rm -r js
+RUN rm -r css
+RUN rm index.html
 RUN /bin/cp -r dist/* /var/www/html
 
 # make all files belong to the nginx user
