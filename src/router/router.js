@@ -13,7 +13,7 @@ import AlbumForm from '../components/AlbumForm.vue';
 import Test from '../components/Test.vue';
 import NoAuth from '../components/NoAuth.vue';
 import PageNotFound from '../components/PageNotFound.vue';
-import Wiki from '../components/Wiki.vue';
+import Wiki from '../components/WikiView.vue';
 import WikiForm from '../components/WikiForm';
 
 import store from '../store/store';
