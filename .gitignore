@@ -1,6 +1,3 @@
-nginx_config/*
-src/constants/
-
 # Logs
 logs
 *.log
