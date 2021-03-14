@@ -1,8 +1,8 @@
 # Create the container from the alpine linux image
-FROM alpine:3.7
+FROM alpine:3.12
 
 # Add nginx and nodejs
-RUN apk add --update nginx nodejs
+RUN apk add --update nginx nodejs npm
 
 # Create the directories we will need
 RUN mkdir -p /tmp/nginx/vue-single-page-app
@@ -28,11 +28,10 @@ RUN npm install @vue/cli-service-global -g
 COPY . .
 
 # run webpack and the vue-loader
-RUN npm cache clean -f
 RUN vue build
 
 # copy the built app to our served directory
-RUN /bin/cp -r dist/* /var/www/html
+RUN cp -r dist/* /var/www/html
 
 # make all files belong to the nginx user
 RUN chown nginx:nginx /var/www/html
