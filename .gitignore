@@ -77,3 +77,9 @@ typings/
 
 # Vue.JS
 dist
+
+# mac
+.DS_Store
+
+# phpstorm
+.idea
