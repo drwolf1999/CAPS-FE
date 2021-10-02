@@ -3,8 +3,25 @@
         <h3 class="text-center">CAPS 위키 수정 : {{ wiki_title }}</h3>
         <form v-on:submit.prevent="onSubmit">
             <div class="form-group">
-                <label for="wiki_content">내용</label>
-                <textarea class="form-control" id="wiki_content" v-model="wiki_content" rows="3"></textarea>
+                <ul class="nav nav-tabs" data-bs-tabs="tabs">
+                    <li class="nav-item">
+                        <a href="#editor" data-target="#editor" data-bs-toggle="tab" class="nav-link active">에디터</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#preview" data-target="#preview" data-bs-toggle="tab" class="nav-link" @click="WIKI">미리보기</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="editor">
+                        <label for="wiki_content">내용</label>
+                        <textarea class="form-control" id="wiki_content" v-model="wiki_content" rows="10"></textarea>
+                    </div>
+                    <div class="tab-pane" id="preview">
+                        <hr>
+                        <div v-html="wiki_sample_content"></div>
+                        <hr>
+                    </div>
+                </div>
             </div>
             <button type="submit" :disabled="isProcessing" class="btn btn-primary btn-block">
                 <span v-if="isProcessing && isModifyMod()">수정 중</span>
@@ -18,6 +35,7 @@
 
 <script>
     import WikiService from '../service/wiki';
+    import NCWIKI from '../library/ncwiki';
 
     export default {
         name: 'WikiForm',
@@ -32,6 +50,7 @@
                 isWikiContentValid: true,
                 // 진행 중
                 isProcessing: false,
+                wiki_sample_content: '',
             };
         },
         props: {
@@ -111,7 +130,19 @@
                     .catch(err => {
                         console.log(err);
                     });
-            }
-        }
+            },
+            async WIKI() {
+                NCWIKI.view(this.wiki_content)
+                .then(data => {
+                    console.log(data);
+                    this.wiki_sample_content = data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+        },
+        computed: {
+        },
     };
 </script>

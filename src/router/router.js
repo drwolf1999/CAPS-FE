@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+// All
 import Board from '../components/Board.vue';
 import Home from '../components/Home.vue';
 import Login from '../components/Login.vue';
@@ -10,7 +11,14 @@ import BoardForm from '../components/BoardForm.vue';
 import Profile from '../components/Profile.vue';
 import Gallery from '../components/Gallery.vue';
 import AlbumForm from '../components/AlbumForm.vue';
+import Wiki from '../components/Wiki.vue';
+import WikiForm from '../components/WikiForm.vue';
 import Test from '../components/Test.vue';
+
+// Admin
+import Category from '../components/Admin/Category.vue';
+
+// ETC...
 import NoAuth from '../components/NoAuth.vue';
 import PageNotFound from '../components/PageNotFound.vue';
 
@@ -84,10 +92,36 @@ const router = new Router({
             props: true
         },
         {
+            path: '/wiki',
+            name: '위키',
+            component: Wiki
+        },
+        {
+            path: '/wiki/search/:wikiTitle',
+            name: '위키',
+            component: Wiki
+        },
+        {
+            path: '/wiki/add/:wikiTitle',
+            name: '위키',
+            component: WikiForm,
+            beforeEnter: requireAuth(),
+        },
+        {
             path: '/test',
             name: '테스트',
             component: Test
         },
+        {
+            path: '/admin/categories',
+            name: '카테고리',
+            component: Category,
+        },
+        // {
+        //     path: '/test',
+        //     name: '테스트',
+        //     component: Test
+        // },
         {
             path: '/noauth',
             name: '권한 필요!',
@@ -97,7 +131,7 @@ const router = new Router({
             path: '*',
             name: '404 Not Found',
             component: PageNotFound
-        }
+        },
     ]
 });
 

@@ -147,5 +147,14 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
+        addBoardCategory(state, categoryData) {
+            axios.post(RestAPI.SERVER_DOMAIN + 'boards/categories', categoryData)
+                .then(() => {
+                    state.dispatch('fetchBoardCategories');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
     }
 });

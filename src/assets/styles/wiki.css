@@ -1,0 +1,46 @@
+.wiki-contents-link:hover {
+    text-decoration: underline;
+}
+
+.wiki-contents-link {
+/*    */
+}
+
+.wiki-contents-list {
+    margin: 0 0 10px;
+}
+
+.wiki-content-title {
+    padding-top: 40px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #AAAAAA;
+}
+
+.wiki-external-link, .wiki-external-link:hover {
+    color: #009900;
+}
+
+.wiki-external-link:before {
+    font-family: FontAwesome, serif;
+    content: '\f0c1';
+    padding-right: 3px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wiki-external-link:hover {
+    text-decoration: underline;
+}
+
+.wiki-internal-link {
+/*    */
+}
+
+.wiki-link-not-found {
+    color: red;
+}
+
+.wiki-image {
+    max-width: 100%;
+    max-height: 300px;
+}

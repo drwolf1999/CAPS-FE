@@ -21,3 +21,11 @@ export default {
     }
 };
 </script>
+
+
+<style src="@/assets/styles/wiki.css"></style>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>

@@ -1,5 +1,5 @@
 // 서버, API에 대한 상수들 정의
-const SERVER_DOMAIN = 'http://172.30.1.24:3000/';
+const SERVER_DOMAIN = 'http://172.30.1.29:3030/';
 const GET_PHOTO = SERVER_DOMAIN + 'gallery/photo/';
 
 export default {

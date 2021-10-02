@@ -19,15 +19,15 @@
                 </li>
                 <!-- Dropdown -->
                 <li v-if="isLogined" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbardrop" data-toggle="dropdown">유틸</a>
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="utils_menu" data-bs-toggle="dropdown" aria-expanded="false">유틸</a>
                     <div class="dropdown-menu">
                         <router-link to="/wiki" class="nav-link">CAPS 위키</router-link>
-                        <a href="http://caps.gq:3000" class="nav-link">CAPS hub</a>
+                        <a href="http://caps.dongguk.edu:3000" class="nav-link">CAPS hub</a>
                     </div>
                 </li>
                 <!-- Dropdown -->
                 <li v-if="isLogined" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbardrop" data-toggle="dropdown">안녕하세요 {{ getUserName }}님!</a>
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="profile_menu" data-bs-toggle="dropdown" aria-expanded="false">안녕하세요 {{ getUserName }}님!</a>
                     <div class="dropdown-menu">
                         <router-link to="/notification" class="nav-link">알림</router-link>
                         <router-link to="/profile" class="nav-link">프로필</router-link>
@@ -36,6 +36,14 @@
                 </li>
                 <li v-else class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" @click="onClickLogin()">로그인</a>
+                </li>
+                <!-- Dropdown -->
+                <li v-if="isLogined" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="admin_menu" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                    <div class="dropdown-menu">
+                        <router-link to="/admin/categories" class="nav-link">게시판 카테고리</router-link>
+                        <router-link to="/admin/user" class="nav-link">사용자</router-link>
+                    </div>
                 </li>
             </ul>
         </div>

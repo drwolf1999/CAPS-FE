@@ -1,14 +1,14 @@
 <template>
-    <div class="wiki container">
+    <div class="wiki container" v-if="!isModifying">
         <h3 class="text-center">
             <span v-if="!wikiTitle">캡스 위키</span>
             <span v-else>캡스 위키 : {{ wikiTitle }}</span>
         </h3>
         <hr/>
         <div v-if="isSearching">
-            <center>
+            <div class="align-content-center">
                 로딩중...
-            </center>
+            </div>
         </div>
         <div v-else>
             <center>
@@ -29,14 +29,14 @@
                         <h2 v-if="wikiTitle"> {{ wikiTitle }} </h2>
                         <h2 v-else>대문</h2>
                     </div>
-                    <div class="col-md-5 inline-input-group mb-3 text-right">
+                    <div class="col-md-5 d-inline mb-3 text-end">
                         <h5><a href="javascript:void(0)" @click="ClickAddWiki(wikiTitle)">[[ 수정하기 ]]</a></h5>
                     </div>
                 </div>
             </div>
             <div class="post-content">
                 <div v-bind:initialWikiContent="Wiki.wiki_content" v-if="Wiki && (Wiki.wiki_title === wikiTitle || !wikiTitle)">
-                    {{ Wiki.wiki_content }}
+                    <div v-html="Wiki.wiki_content"></div>
                 </div>
                 <div v-else>
                     해당 위키가 존재하지 않아요....ㅠㅠ 만들어 주세요
@@ -47,13 +47,14 @@
             </div>
         </div>
     </div>
-<!--    <WikiForm v-else v-bind:initialWikiContent="Wiki.wiki_content" v-on:finished="finishModifyWiki"></WikiForm>-->
+    <WikiForm v-else v-bind:initialWikiContent="Wiki.wiki_content" v-on:finished="finishModifyWiki"></WikiForm>
 </template>
 
 
 <script>
     import WikiService from '../service/wiki';
     import WikiForm from './WikiForm';
+    import NCWIKI from '../library/ncwiki';
 
     export default {
         components: {WikiForm},
@@ -61,7 +62,7 @@
             return {
                 isModifying: false,
                 SearchQuery: '',
-                wikiTitle: this.$route.params.wikiTitle === undefined ? '' : this.$route.params.wikiTitle,
+                wikiTitle: this.$route.params.wikiTitle === undefined ? '대문' : this.$route.params.wikiTitle,
                 Wiki: this.$store.getters.getWiki,
                 isSearching: false,
             };
@@ -144,8 +145,9 @@
             },
             fetch_wiki(key) {
                 WikiService.getWiki(key)
-                    .then((response) => {
+                    .then(async (response) => {
                         this.Wiki = response.data.wiki;
+                        this.Wiki.wiki_content = await NCWIKI.view(this.Wiki.wiki_content);
                         this.SearchQuery = '';
                     })
                     .catch(err => {
