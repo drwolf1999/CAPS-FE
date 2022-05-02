@@ -5,12 +5,28 @@ export default class NCWIKI {
     static async view(str) {
         let contents;
         let content = str;
+        let footnote;
+        content = content.replace(/( *\n *){2,}/g, '\n');
         [contents, content] = this.getContents(content);
+        [footnote, content] = this.getFootnote(content);
+        if (footnote !== '') {
+            footnote = '<hr>' + footnote;
+        }
         content = await this.getLinks(content);
-        contents = `<div class="card card-body bg-light p-4">${contents}</div>`;
-        content = `<div class="wiki-content pt-3">${content}</div>`;
-        content = content.replace(/\n/g, '</div><div class="wiki-content pt-3">');
-        return contents + content;
+        /// 서식 처리
+        content = this.convertStringToHtmlTag(content, WikiTag.BOLD, WikiTag.BOLD, '<b>');
+        content = this.convertStringToHtmlTag(content, WikiTag.STRIKE, WikiTag.STRIKE, '<s>');
+        content = this.convertStringToHtmlTag(content, WikiTag.UNDER_SCORE, WikiTag.UNDER_SCORE, '<u>');
+        content = this.convertStringToHtmlTag(content, WikiTag.ITALIC, WikiTag.ITALIC, '<i>');
+
+        content = this.convertStringToHtmlTag(content, WikiTag.FRAME_OPEN, WikiTag.FRAME_CLOSE, '<div class="card card-body bg-light">', '</div>');
+        ///
+
+        content = this.getList(content);
+        if (contents !== '') contents = `<div class="card card-body bg-light p-4">${contents}</div>`;
+        content = `<p class="wiki-content pt-2">${content}</p>`;
+        content = content.replace(/\n/g, '</p><p class="wiki-content">');
+        return contents + content + footnote;
     }
 
     static getContents(str) {
@@ -61,6 +77,33 @@ export default class NCWIKI {
         return [contents, str];
     }
 
+    static getFootnote(str) {
+        let footnote = '';
+        let footnoteNo = 1;
+        let strIndex = 0;
+        while ((strIndex = str.indexOf(WikiTag.FOOTNOTE_OPEN, strIndex)) !== -1) {
+            // '!' 와 비교
+            if (strIndex > 0 && str.charAt(strIndex - 1) === WikiTag.COMMENT) {
+                str = str.substring(0, strIndex - 1) + str.substring(strIndex);
+                strIndex = strIndex + 2;
+                continue;
+            }
+
+            const [text, textLength] = this.getTextWithLength(str, strIndex + WikiTag.FOOTNOTE_OPEN.length, WikiTag.FOOTNOTE_CLOSE);
+
+            footnote += `<p><a href="#rfn-${footnoteNo}" id="fn-${footnoteNo}">[${footnoteNo}]</a> ${text}</p>`;
+
+            const footnoteHtml = `<sup><a href="#fn-${footnoteNo}" class="wiki-tooltip" id="rfn-${footnoteNo}" data-bs-toggle="tooltip" data-bs-placement="top" title="${text}">[${footnoteNo}]</a></sup>`;
+
+            str = str.substr(0, strIndex) + footnoteHtml + str.substr(strIndex + WikiTag.FOOTNOTE_OPEN.length + textLength + WikiTag.FOOTNOTE_CLOSE.length);
+
+            strIndex = strIndex + footnoteHtml.length;
+
+            footnoteNo++;
+        }
+        return [footnote, str];
+    }
+
     static async getLinks(str) {
         let strIndex = 0;
         while ((strIndex = str.indexOf(WikiTag.LINK_OPEN, strIndex)) !== -1) {
@@ -109,6 +152,75 @@ export default class NCWIKI {
             strIndex = strIndex + linkHtml.length;
         }
 
+        return str;
+    }
+
+    static getList(str) {
+        let strIndex = 0;
+        let isStartList = false;
+        while ((strIndex = str.indexOf('\n', strIndex)) !== -1) {
+            if (strIndex + 1 < str.length && str.charAt(strIndex + 1) !== WikiTag.LIST_LETTERS) {
+                if (isStartList) {
+                    str = str.substr(0, strIndex) + '</ul>' + str.substr(strIndex);
+                    strIndex = strIndex + 4;
+                }
+                isStartList = false;
+                strIndex = strIndex + 1;
+                continue;
+            }
+            if (strIndex + 1 >= str.length) {
+                break;
+            }
+
+            let [text, textLength] = this.getTextWithLength(str, strIndex + 2, '\n');
+
+            let listHtml = '';
+
+            if (!isStartList) {
+                isStartList = true;
+                listHtml = '<ul class="wiki-list">';
+            }
+
+            listHtml = listHtml + `<li class="wiki-list-item">${text}</li>`;
+
+            str = str.substr(0, strIndex) + listHtml + str.substr(strIndex + 2 + textLength);
+
+            strIndex = strIndex + listHtml.length;
+        }
+        if (isStartList) {
+            str = str + '</ul>';
+        }
+        return str;
+    }
+
+    static convertStringToHtmlTag(str, openToken, closeToken, openTag, closeTag = null) {
+        if (closeTag === null) {
+            closeTag = '</' + openTag.substr(1);
+        }
+        let strIndex = 0;
+
+        while ((strIndex = str.indexOf(openToken, strIndex)) !== -1) {
+            if (strIndex > 0 && str.charAt(strIndex - 1) === WikiTag.COMMENT) {
+                str = str.substring(0, strIndex - 1) + str.substring(strIndex);
+                strIndex = strIndex + 2;
+                continue;
+            }
+
+            // 링크 예외
+            if ((strIndex >= 5 && str.substr(strIndex - 5, 7) === 'http://')
+                || (strIndex >= 6 && str.substr(strIndex - 6, 8) === 'https://')) {
+                strIndex += 2;
+                continue;
+            }
+
+            let [text, textLength] = this.getTextWithLength(str, strIndex + openToken.length, closeToken);
+
+            const textHtml = openTag + text + closeTag;
+
+            str = str.substr(0, strIndex) + textHtml + str.substr(strIndex + openToken.length + textLength + closeToken.length);
+
+            strIndex += textHtml.length;
+        }
         return str;
     }
 

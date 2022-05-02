@@ -1,5 +1,5 @@
 <template>
-    <div class="wiki container">
+    <div class="wiki container mt-3">
         <h3 class="text-center">CAPS 위키 수정 : {{ wiki_title }}</h3>
         <form v-on:submit.prevent="onSubmit">
             <div class="form-group">
@@ -18,7 +18,12 @@
                     </div>
                     <div class="tab-pane" id="preview">
                         <hr>
-                        <div v-html="wiki_sample_content"></div>
+                        <div v-if="!isRunningWikiEngine" v-html="wikiPreview"></div>
+                        <div v-else class="text-center">
+                            <div class="spinner-border" style="width: 10vw; height: 10vw" role="status">
+                                <span class="visually-hidden">작업 중...</span>
+                            </div>
+                        </div>
                         <hr>
                     </div>
                 </div>
@@ -50,7 +55,8 @@
                 isWikiContentValid: true,
                 // 진행 중
                 isProcessing: false,
-                wiki_sample_content: '',
+                wikiPreview: '',
+                isRunningWikiEngine: false,
             };
         },
         props: {
@@ -125,24 +131,25 @@
             fetchWiki(Title) {
                 WikiService.getWiki(Title)
                     .then((response) => {
-                        this.wiki_content = response.data.wiki.wiki_content;
+                        if (response.data.wiki)
+                            this.wiki_content = response.data.wiki.wiki_content;
                     })
                     .catch(err => {
                         console.log(err);
                     });
             },
-            async WIKI() {
+            WIKI() {
+                this.isRunningWikiEngine = true;
                 NCWIKI.view(this.wiki_content)
-                .then(data => {
-                    console.log(data);
-                    this.wiki_sample_content = data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                    .then(data => {
+                        this.wikiPreview = data;
+                        this.isRunningWikiEngine = false;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             },
         },
-        computed: {
-        },
+        computed: {},
     };
 </script>

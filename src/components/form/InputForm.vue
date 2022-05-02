@@ -19,6 +19,7 @@
 import Josa from 'josa-js';
 
 export default {
+    name: 'InputForm',
     data() {
         return {
             inputData: this.initialData,
@@ -33,10 +34,10 @@ export default {
     },
     computed: {
         isValid() {
-            return this.validCheckMessage.length == 0;
+            return this.validCheckMessage.length === 0;
         },
         isInit() {
-            return this.validCheckMessage.length == 0 && this.inputData.length == 0;
+            return this.validCheckMessage.length === 0 && this.inputData.length === 0;
         }
     },
     methods: {
@@ -48,7 +49,7 @@ export default {
         },
         validCheck() {
             this.validCheckMessage = [];
-            if (this.inputData.length == 0) {
+            if (this.inputData.length === 0) {
                 this.validCheckMessage.push(this.nameWithJosa + ' 입력하세요.');
                 return;
             }

@@ -1,5 +1,5 @@
 <template>
-<div class="container" v-if="board && board._id == boardId">
+<div class="container mt-3" v-if="board && board._id === boardId">
     <div v-if="!isModifying">
         <div class="post-heading">
             <div class="row">
@@ -21,7 +21,7 @@
             {{ board.board_content }}
         </div>
 
-        <div v-if="getUserId == board.user._id" class="post-buttons">
+        <div v-if="getUserId === board.user._id" class="post-buttons">
             <div class="row">
                 <div class="col-sm-2">
                     <button class="btn btn-warning btn-block" role="button" @click="modifyBoard">글 수정</button>
@@ -32,6 +32,8 @@
                 </div>
             </div>
         </div>
+
+        <Comments v-bind:board-id="boardId"/>
     </div>
 
     <BoardForm v-else v-bind:currentBoardId="boardId" v-bind:initialBoardTitle="board.board_title"
@@ -45,6 +47,7 @@
 import ConfirmModal from './common/ConfirmModal.vue';
 import BoardForm from './BoardForm.vue';
 import BoardService from '../service/board';
+import Comments from '@/components/Comments';
 
 export default {
     name: 'BoardView',
@@ -87,7 +90,8 @@ export default {
     },
     components: {
         ConfirmModal,
-        BoardForm
+        BoardForm,
+        Comments,
     }
 };
 </script>

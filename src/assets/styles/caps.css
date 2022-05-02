@@ -1,0 +1,12 @@
+hr {
+    margin: 0.5rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border: 0;
+    opacity: 0.25;
+}
+
+.img-250 {
+    width: 250px;
+    height: 250px;
+}

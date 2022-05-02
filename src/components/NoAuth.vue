@@ -1,5 +1,5 @@
 <template>
-<div class="page-not-found container jumbotron">
+<div class="page-not-found container jumbotron mt-3">
     <h1>권한이 없습니다.</h1>
     <router-link to="/" class="nav-link">홈으로 돌아가기</router-link>
 </div>

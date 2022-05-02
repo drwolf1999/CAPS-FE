@@ -13,4 +13,9 @@ export default {
 
     FOOTNOTE_OPEN: '{{',
     FOOTNOTE_CLOSE: '}}',
+
+    FRAME_OPEN: '((',
+    FRAME_CLOSE: '))',
+
+    LIST_LETTERS: '*',
 };

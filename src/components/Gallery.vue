@@ -1,5 +1,5 @@
 <template>
-<div class="gallery container">
+<div class="gallery container mt-3">
     <div class="row">
         <div class="col-sm-4 col-xs-12 img-wrapper" v-for="album in gallery" v-bind:key="album._id">
             <div class="card">

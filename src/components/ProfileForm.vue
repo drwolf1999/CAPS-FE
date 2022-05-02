@@ -1,5 +1,5 @@
 <template>
-<div class="login container">
+<div class="login container mt-3">
     <h3 class="text-center">프로필 수정</h3>
     <hr />
     <form v-on:submit.prevent="onSubmit">

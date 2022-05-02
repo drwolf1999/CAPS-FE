@@ -1,15 +1,15 @@
 <template>
-<header class="navbar navbar-expand-md bg-light navbar-light">
+<header class="navbar navbar-expand-md navbar-dark" :class="$route.path === '/' ? 'bg-dark' : 'bg-primary'">
     <div class="container">
         <router-link to="/" class="navbar-brand">CAPS</router-link>
 
         <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-bar" aria-controls="nav-bar" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Links -->
-        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <div class="collapse navbar-collapse justify-content-end" id="nav-bar">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <router-link to="/board" class="nav-link">게시판</router-link>
@@ -20,7 +20,7 @@
                 <!-- Dropdown -->
                 <li v-if="isLogined" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="utils_menu" data-bs-toggle="dropdown" aria-expanded="false">유틸</a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-menu-dark">
                         <router-link to="/wiki" class="nav-link">CAPS 위키</router-link>
                         <a href="http://caps.dongguk.edu:3000" class="nav-link">CAPS hub</a>
                     </div>
@@ -28,7 +28,7 @@
                 <!-- Dropdown -->
                 <li v-if="isLogined" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="profile_menu" data-bs-toggle="dropdown" aria-expanded="false">안녕하세요 {{ getUserName }}님!</a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-menu-dark">
                         <router-link to="/notification" class="nav-link">알림</router-link>
                         <router-link to="/profile" class="nav-link">프로필</router-link>
                         <a href="javascript:void(0)" class="nav-link" @click="onClickLogout">로그아웃</a>
@@ -40,7 +40,7 @@
                 <!-- Dropdown -->
                 <li v-if="isLogined" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="admin_menu" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <router-link to="/admin/categories" class="nav-link">게시판 카테고리</router-link>
                         <router-link to="/admin/user" class="nav-link">사용자</router-link>
                     </div>
@@ -79,6 +79,6 @@ export default {
 
 <style>
 header {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 </style>

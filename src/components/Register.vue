@@ -1,5 +1,5 @@
 <template>
-<div class="register container">
+<div class="register container mt-3">
     <div class="row">
         <div class="col-md-4 register-main">
             <h3 class="text-center"> CAPS 회원가입 </h3>

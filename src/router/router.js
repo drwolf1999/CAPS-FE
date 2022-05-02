@@ -140,4 +140,11 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
+const oPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+    return oPush.call(this, location).catch(err => {
+        if (err.name !== 'NavigationDuplicated') throw err;
+    });
+};
+
 export default router;

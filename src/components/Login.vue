@@ -1,5 +1,5 @@
 <template>
-<div class="login container">    
+<div class="login container mt-3">
     <div class="row">
         <div class="col-lg-4 login-main">
             <h3 class="text-center"> CAPS 로그인 </h3>

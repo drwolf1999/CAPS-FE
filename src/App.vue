@@ -24,6 +24,9 @@ export default {
 
 
 <style src="@/assets/styles/wiki.css"></style>
+<style src="@/assets/styles/caps.css"></style>
+<style src="@/assets/styles/comment.css"></style>
+<style src="animate.css"></style>
 <style>
     a {
         text-decoration: none;

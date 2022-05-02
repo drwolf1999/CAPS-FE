@@ -95,7 +95,7 @@ export default new Vuex.Store({
     },
     actions: {
         fetchBoard(state, boardId) {
-            return axios.get(RestAPI.SERVER_DOMAIN + 'boards/view/' + boardId)
+            return axios.get(RestAPI.SERVER_DOMAIN + 'boards/' + boardId)
                 .then(response => {
                     state.commit('fetchBoard', response.data);
                 })

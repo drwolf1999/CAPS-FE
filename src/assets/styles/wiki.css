@@ -44,3 +44,61 @@
     max-width: 100%;
     max-height: 300px;
 }
+
+.wiki-list {
+    padding-left: 35px;
+}
+
+.wiki-list-item {
+    padding-bottom: 3px;
+    font-size: 16px;
+    list-style-type: square;
+}
+
+.wiki-live-search-wallpaper {
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    z-index: 989;
+}
+
+.wiki-search {
+    position: relative;
+}
+
+ul.wiki-live-search {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 0;
+    border-right: #E6E6E6 solid 1px;
+    border-left: #E6E6E6 solid 1px;
+    border-bottom: #E6E6E6 solid 1px;
+    border-radius: 0 0 10px 10px;
+}
+
+li.wiki-live-search {
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+}
+
+li.wiki-live-search:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+li.wiki-live-search:hover {
+    background: #E6E6E6;
+}
+
+div.wiki-live-search {
+    flex: auto;
+    display: flex;
+    margin: 0 20px 0 20px;
+    padding: 6px 0;
+}
+
+.wiki-search:focus-within > ul.wiki-live-search, .wiki-search:active > ul.wiki-live-search {
+    display: flex;
+}

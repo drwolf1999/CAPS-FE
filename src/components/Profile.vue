@@ -1,8 +1,8 @@
 <template>
-    <div v-if="getUserId && user">
+    <div v-if="getUserId && user" class="mt-3">
         <div class="container">
             <div class="row my-2">
-                <div class="col-lg-8 order-lg-2">
+                <div class="col-8 order-lg-2">
                     <ul class="nav nav-tabs" data-bs-tabs="tabs">
                         <li class="nav-item">
                             <a href="#profile" data-target="#profile" data-bs-toggle="tab" class="nav-link active">Profile</a>
@@ -130,9 +130,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 order-lg-1 text-center">
-                    <img :src="getUserPhoto(user.user_id)" @error="replaceUserPhoto"
-                         class="mx-auto img-fluid rounded-circle d-block" alt="avatar"
-                         @click="isModifying ? $refs.profileImage.click() : void 0">
+                    <ProfileImage :image-src="getUserPhoto(user.user_id)"
+                                  class="mx-auto img-fluid d-block img-250"
+                                  @click="isModifying ? $refs.profileImage.click() : void 0"/>
                     <label class="custom-file d-none">
                         <input type="file" id="file" class="custom-file-input" ref="profileImage"
                                accept="image/jpeg, image/png" v-on:change="SetProfileImage">
@@ -148,6 +148,7 @@
     import ProfileForm from './ProfileForm.vue';
     import UserService from '../service/user';
     import RestAPI from '../constants/RestAPI';
+    import ProfileImage from '@/components/ProfileImage';
 
     export default {
         data() {
@@ -194,7 +195,7 @@
             },
             replaceUserPhoto(e) {
                 // console.log(e);
-                e.target.src = '//placehold.it/150';
+                e.target.src = '';
             },
             SetProfileImage(e) {
                 if (e.target.files.length === 0) this.userProfileImage = null;
@@ -214,6 +215,7 @@
             }
         },
         components: {
+            ProfileImage,
             ProfileForm
         }
     };

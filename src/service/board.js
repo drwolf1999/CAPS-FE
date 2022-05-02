@@ -51,4 +51,24 @@ export default {
                 });
         });
     },
+    getComments(boardId) {
+        return axios.get(RestAPI.SERVER_DOMAIN + 'boards/' + boardId + '/comment')
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+    writeComment(boardId, commentData) {
+        return new Promise(function (resolve, reject) {
+            axios.post(RestAPI.SERVER_DOMAIN + 'boards/' + boardId + '/comment', commentData)
+                .then(response => {
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    },
 };

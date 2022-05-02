@@ -1,5 +1,5 @@
 <template>
-<div class="album-form container">
+<div class="album-form container mt-3">
     <h3 class="text-center"> 앨범 만들기 </h3>
     <hr />
     <form v-on:submit.prevent="onSubmit">

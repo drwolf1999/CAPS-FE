@@ -1,5 +1,5 @@
 <template>
-<div class="board container table-responsive">
+<div class="board mt-3 container table-responsive">
     <h3 class="text-center">
         <span>전체 게시판</span>
     </h3>

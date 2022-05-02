@@ -9,6 +9,7 @@
   "author": "Zeikar Park",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "josa-js": "0.0.2",
     "jsonwebtoken": "^8.5.1",
