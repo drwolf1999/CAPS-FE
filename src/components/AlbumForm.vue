@@ -28,7 +28,7 @@
 
 <script>
 import InputForm from './form/InputForm.vue';
-import UploadService from '../service/upload';
+import UploadService from '../service/upload.js';
 
 export default {
     name: 'AlbumForm',

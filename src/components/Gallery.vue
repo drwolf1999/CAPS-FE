@@ -22,7 +22,7 @@
 
 <script>
 import AlbumView from './AlbumView.vue';
-import RestAPI from '../constants/RestAPI';
+import RestAPI from '../constants/RestAPI.js';
 
 export default {
     name: 'Gallery',

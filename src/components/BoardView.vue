@@ -46,8 +46,8 @@
 <script>
 import ConfirmModal from './common/ConfirmModal.vue';
 import BoardForm from './BoardForm.vue';
-import BoardService from '../service/board';
-import Comments from '@/components/Comments';
+import BoardService from '../service/board.js';
+import Comments from '@/components/Comments.vue';
 
 export default {
     name: 'BoardView',

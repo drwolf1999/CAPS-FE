@@ -5,18 +5,32 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vue-cli-service build --mode prod"
+    "build": "webpack --mode production"
   },
   "author": "Zeikar Park",
   "license": "ISC",
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
+    "crypto-browserify": "^3.12.0",
     "josa-js": "0.0.2",
     "jsonwebtoken": "^8.5.1",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
     "vue": "^2.6.12",
     "vue-notification": "^1.3.20",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.33",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "image-webpack-loader": "^8.1.0",
+    "style-loader": "^3.3.1",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   }
 }

@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import BoardService from '../service/board';
+import BoardService from '../service/board.js';
 
 export default {
     name: 'Board',

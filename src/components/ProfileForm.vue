@@ -17,7 +17,7 @@
 <script>
 import InputForm from './form/InputForm.vue';
 import PasswordForm from './form/PasswordForm.vue';
-import UserService from '../service/user';
+import UserService from '../service/user.js';
 
 export default {
     data() {

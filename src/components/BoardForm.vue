@@ -27,7 +27,7 @@
 <script>
     import InputForm from './form/InputForm.vue';
     import SelectionForm from './form/SelectionForm.vue';
-    import BoardService from '../service/board';
+    import BoardService from '../service/board.js';
 
     export default {
         name: 'BoardForm',

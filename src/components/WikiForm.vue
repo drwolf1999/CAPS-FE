@@ -39,8 +39,8 @@
 </template>
 
 <script>
-    import WikiService from '../service/wiki';
-    import NCWIKI from '../library/ncwiki';
+    import WikiService from '../service/wiki.js';
+    import NCWIKI from '../library/ncwiki.js';
 
     export default {
         name: 'WikiForm',

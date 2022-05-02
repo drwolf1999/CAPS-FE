@@ -17,8 +17,8 @@
 </template>
 
 <script>
-    import ProfileImage from '@/components/ProfileImage';
-    import Utility from '@/library/utility';
+    import ProfileImage from '@/components/ProfileImage.vue';
+    import Utility from '@/library/utility.js';
 
     export default {
         name: 'Comment',

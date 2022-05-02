@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import UserService from '../service/user';
+import UserService from '../service/user.js';
 
 export default {
     name: 'Register',

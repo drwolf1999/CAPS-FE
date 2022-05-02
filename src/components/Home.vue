@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import HomeSlider from '@/components/HomeSlider';
+    import HomeSlider from '@/components/HomeSlider.vue';
 
     export default {
         name: 'Home',

@@ -24,9 +24,9 @@
 </template>
 
 <script>
-    import TextareaForm from '@/components/form/TextareaForm';
-    import ProfileImage from '@/components/ProfileImage';
-    import BoardService from '@/service/board';
+    import TextareaForm from '@/components/form/TextareaForm.vue';
+    import ProfileImage from '@/components/ProfileImage.vue';
+    import BoardService from '@/service/board.js';
 
     export default {
         name: 'CommentForm',

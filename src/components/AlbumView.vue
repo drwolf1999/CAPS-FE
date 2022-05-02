@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import RestAPI from '../constants/RestAPI';
+import RestAPI from '../constants/RestAPI.js';
 
 export default {
     name: 'AlbumView',

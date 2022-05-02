@@ -146,9 +146,9 @@
 
 <script>
     import ProfileForm from './ProfileForm.vue';
-    import UserService from '../service/user';
-    import RestAPI from '../constants/RestAPI';
-    import ProfileImage from '@/components/ProfileImage';
+    import UserService from '../service/user.js';
+    import RestAPI from '../constants/RestAPI.js';
+    import ProfileImage from '@/components/ProfileImage.vue';
 
     export default {
         data() {

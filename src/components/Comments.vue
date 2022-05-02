@@ -14,9 +14,9 @@
 </template>
 
 <script>
-    import CommentForm from '@/components/CommentForm';
-    import Comment from '@/components/Comment';
-    import BoardService from '@/service/board';
+    import CommentForm from '@/components/CommentForm.vue';
+    import Comment from '@/components/Comment.vue';
+    import BoardService from '@/service/board.js';
 
     export default {
         name: 'Comments',
