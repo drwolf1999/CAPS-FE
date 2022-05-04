@@ -3,6 +3,7 @@ FROM alpine:3.12
 
 # Add nginx and nodejs
 RUN apk add --update nginx nodejs npm
+RUN apk add --no-cache autoconf automake file g++ libtool make nasm libpng-dev
 
 # Create the directories we will need
 RUN mkdir -p /tmp/nginx/vue-single-page-app
@@ -29,7 +30,7 @@ RUN npm install @vue/cli-service-global -g
 COPY . .
 
 # run webpack and the vue-loader
-RUN vue build
+RUN npm run build
 
 # copy the built app to our served directory
 RUN cp -r dist/* /var/www/html
