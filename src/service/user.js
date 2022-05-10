@@ -34,4 +34,16 @@ export default {
                 console.log(error);
             });
     },
+    // 사용자 가져오기 (조건)
+    getUserByQuery(query) {
+        return axios.get(RestAPI.SERVER_DOMAIN + 'users', {
+            params: {
+                user_permission: query.user_permission,
+                user_grade: query.user_grade,
+            }
+        })
+            .catch(error => {
+                console.log(error);
+            });
+    },
 };

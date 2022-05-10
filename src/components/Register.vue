@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="grade">기수</label>
-                    <select class="form-control" v-model="user_grade"
+                    <select class="form-control" v-model="user_grade" id="grade"
                         :class="isGradeValid?'is-valid':'is-invalid'"  @change="gradeValidCheck()"
                         aria-describedby="gradeHelpBlock" >
                         <option disabled value="">기수를 선택하세요</option>

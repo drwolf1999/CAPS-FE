@@ -11,7 +11,7 @@
             </thead>
             <tbody>
             <tr v-for="(c, i) in Categories" v-bind:key="i">
-                <td>{{ i }}</td>
+                <td>{{ c.category_id }}</td>
                 <td>{{ c.category_name }}</td>
                 <td>{{ c.category_permission }}</td>
                 <td>삭제</td>
@@ -74,6 +74,7 @@
                 let cl = categories.length;
                 for (let i = 0; i < cl; i++) {
                     ret.push({
+                        category_id: categories[i]._id,
                         category_name: categories[i].category_name,
                         category_permission: categories[i].category_permission,
                     });
