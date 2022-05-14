@@ -9,7 +9,8 @@ export default {
             params: {
                 category: query.category,
                 search: query.search,
-                page: query.page
+                page: query.page,
+                limit: query.limit,
             }
         }).catch(error => {
             console.log(error);

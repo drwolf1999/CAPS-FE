@@ -4,7 +4,7 @@
     <select class="form-control" v-model="selectedData" required
         :class="selectedData.length==0&&validCheckMessage.length==0?'form-control':isValid?'is-valid':'is-invalid'"  @change="onInput()"
         :aria-describedby="name + 'HelpBlock'" >
-        <option disabled value="">카테고리를 선택하세요</option>
+        <option disabled value="">{{ nameWithJosa }} 선택하세요</option>
         <option v-for="option in selectList" v-bind:value="option.value" v-bind:key="option.value">
             {{ option.text }}
         </option>
@@ -32,7 +32,7 @@ export default {
         };
     },
     props: {
-        initialData: String,
+        initialData: [String, Number],
         name: String,
         selectList: Array
     },

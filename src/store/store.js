@@ -30,6 +30,8 @@ export default new Vuex.Store({
         accessToken: axios.defaults.headers.common['Access-Token'],
         // 현재 게시글 정보
         board: null,
+        // 현재 스터디 정보,
+        study: null,
         // 갤러리
         gallery: [],
         // 앨범
@@ -42,6 +44,9 @@ export default new Vuex.Store({
     getters: {
         getBoard(state) {
             return state.board;
+        },
+        getStudy(state) {
+            return state.study;
         },
         getGallery(state) {
             return state.gallery;
@@ -65,6 +70,9 @@ export default new Vuex.Store({
     mutations: {
         fetchBoard(state, boardData) {
             state.board = boardData;
+        },
+        fetchStudy(state, studyData) {
+            state.study = studyData;
         },
         fetchGallery(state, galleryData) {
             state.gallery = galleryData;
@@ -98,6 +106,16 @@ export default new Vuex.Store({
             return axios.get(RestAPI.SERVER_DOMAIN + 'boards/' + boardId)
                 .then(response => {
                     state.commit('fetchBoard', response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        fetchStudy(state, studyId) {
+            return axios.get(RestAPI.SERVER_DOMAIN + 'studies/' + studyId)
+                .then(response => {
+                    console.log(response.data);
+                    state.commit('fetchStudy', response.data);
                 })
                 .catch(error => {
                     console.log(error);

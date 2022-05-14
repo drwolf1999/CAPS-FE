@@ -17,7 +17,7 @@
                                        class="text-black preview-a"
                                        :href="e.url"><strong>{{ e.name }}</strong></a>
                                 </template>
-                                <div v-else class="">아무 내용이 없습니다.</div>
+                                <div v-else class="">내용이 없습니다.</div>
                             </div>
                             <div v-else class="text-center">
                                 <div class="spinner-border text-dark" role="status"></div>
@@ -52,92 +52,144 @@
 </template>
 
 <script>
-    import HomeSlider from '@/components/HomeSlider.vue';
-    import BoardService from '@/service/board';
-    import UserService from '@/service/user';
+import HomeSlider from '@/components/HomeSlider.vue';
+import BoardService from '@/service/board';
+import StudyService from '@/service/study';
+import UserService from '@/service/user';
+import GlobalValue from '@/constants/GlobalValue';
 
-    export default {
-        name: 'Home',
-        components: {HomeSlider},
-        props: {},
-        data() {
-            return {
-                preview_category: ['공지사항', '주저리', '스터디 게시판', '스터디', '갤러리', '활동 랭킹'],
-                card_class: ['animate__bounceInLeft', 'animate__zoomIn', 'animate__bounceInRight', 'animate__bounceInLeft', 'animate__zoomIn', 'animate__bounceInRight'],
-                preview: new Array(6),
-                president: null,
-            };
-        },
-        mounted() {
-            this.fetchBoards(0, 1);
-            this.fetchBoards(1, 2);
-            this.fetchPresident();
-        },
-        methods: {
-            fetchBoards(idx, category) {
-                BoardService.getBoards({category: category})
-                    .then(response => {
-                        const r_ds = response.data.result.filter((e, i) => i < 3);
-                        let p_ds = [];
-                        const r_ds_length = r_ds.length;
-                        for (let i = 0; i < r_ds_length; i++) {
-                            p_ds.push({
-                                name: r_ds[i].board_title,
-                                url: `/board/view/${r_ds[i]._id}`,
-                            });
-                        }
-                        this.preview.splice(idx, 1, p_ds);
-                    })
-                    .catch(() => {
-                    });
-            },
-            fetchPresident() {
-                UserService.getUserByQuery({
-                    user_permission: 6,
-                    user_grade: new Date().getFullYear() - 1987,
+export default {
+    name: 'Home',
+    components: {HomeSlider},
+    props: {},
+    data() {
+        return {
+            preview_category: ['공지사항', '주저리', '스터디 게시판', '스터디', '갤러리', '활동 랭킹'],
+            card_class: ['animate__bounceInLeft', 'animate__zoomIn', 'animate__bounceInRight', 'animate__bounceInLeft', 'animate__zoomIn', 'animate__bounceInRight'],
+            preview: new Array(6),
+            president: null,
+        };
+    },
+    mounted() {
+        this.fetchBoards(0, 1);
+        this.fetchBoards(1, 2);
+        this.fetchStudies();
+        this.fetchBoards(3, GlobalValue.G_STUDY_CATEGORY);
+        this.fetchGallery();
+        this.fetchUsers();
+        this.fetchPresident();
+    },
+    methods: {
+        fetchBoards(idx, category) {
+            BoardService.getBoards({category: category})
+                .then(response => {
+                    const r_ds = response.data.result.filter((e, i) => i < 3);
+                    let p_ds = [];
+                    const r_ds_length = r_ds.length;
+                    for (let i = 0; i < r_ds_length; i++) {
+                        p_ds.push({
+                            name: r_ds[i].board_title,
+                            url: `/board/view/${r_ds[i]._id}`,
+                        });
+                    }
+                    this.preview.splice(idx, 1, p_ds);
                 })
-                    .then(response => {
-                        const r = response.data;
-                        if (Array.isArray(r) && r.length > 0) {
-                            this.president = r[0];
-                        }
-                    })
-                    .catch(() => {
+                .catch(() => {
+                });
+        },
+        fetchStudies() {
+            StudyService.getStudies({})
+                .then(response => {
+                    const r_ds = response.data.result.filter((e, i) => i < 3);
+                    let p_ds = [];
+                    const r_ds_length = r_ds.length;
+                    for (let i = 0; i < r_ds_length; i++) {
+                        p_ds.push({
+                            name: r_ds[i].study_title,
+                            url: `/study/view/${r_ds[i]._id}`,
+                        });
+                    }
+                    this.preview.splice(2, 1, p_ds);
+                });
+        },
+        fetchGallery() {
+            this.$store.dispatch('fetchGallery').then(() => {
+                const r_ds = this.$store.getters.getGallery.filter((e, i) => i < 3);
+                let p_ds = [];
+                const r_ds_length = r_ds.length;
+                for (let i = 0; i < r_ds_length; i++) {
+                    p_ds.push({
+                        name: r_ds[i].album_title,
+                        url: `/gallery?albumId=${r_ds[i]._id}`,
                     });
-            },
-        }
-    };
+                }
+                this.preview.splice(4, 1, p_ds);
+            });
+        },
+        fetchUsers() {
+            UserService.getUserByQuery({})
+                .then(response => {
+                    const r_ds = response.data;
+                    let p_ds = [];
+                    const r_ds_length = r_ds.length;
+                    for (let i = 0; i < r_ds_length; i++) {
+                        p_ds.push({
+                            name: r_ds[i].user_name,
+                            url: `/profile/${r_ds[i].user_id}`,
+                        });
+                    }
+                    this.preview.splice(5, 1, p_ds);
+                })
+                .catch(() => {
+                });
+        },
+        fetchPresident() {
+            UserService.getUserByQuery({
+                user_permission: 6,
+                user_grade: new Date().getFullYear() - 1987,
+            })
+                .then(response => {
+                    const r = response.data;
+                    if (Array.isArray(r) && r.length > 0) {
+                        this.president = r[0];
+                    }
+                })
+                .catch(() => {
+                });
+        },
+    }
+};
 </script>
 
 <style scoped>
-    a:hover {
-        text-decoration: underline;
-    }
+a:hover {
+    text-decoration: underline;
+}
 
-    #feature > a {
-        line-height: 25px;
-    }
+#feature > a {
+    line-height: 25px;
+}
 
-    #feature > a:hover {
-        color: rgb(255, 193, 7) !important;
-        text-decoration: underline;
-    }
+#feature > a:hover {
+    color: rgb(255, 193, 7) !important;
+    text-decoration: underline;
+}
 
-    .preview-a::after {
-        content: '\a';
-        white-space: pre;
-    }
+.preview-a::after {
+    content: '\a';
+    white-space: pre;
+}
 
-    #contact-us {
-        background-size: cover;
-        background: #C5C5C5 fixed;
-        padding: 80px;
-        text-align: center;
-        position: relative;
-    }
+#contact-us {
+    background-size: cover;
+    background: #C5C5C5 fixed;
+    padding: 80px;
+    text-align: center;
+    position: relative;
+}
 
-    #contact-us .block {
-        position: relative;
-        color: white;
-    }
+#contact-us .block {
+    position: relative;
+    color: white;
+}
 </style>

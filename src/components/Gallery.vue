@@ -28,8 +28,8 @@ export default {
     name: 'Gallery',
     data() {
         return {
-            chosenAlbumId: '',
-            showModal: false
+            chosenAlbumId: this.$route.query.albumId || '',
+            showModal: this.$route.query.albumId
         };
     },
     mounted() {

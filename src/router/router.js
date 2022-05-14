@@ -2,12 +2,15 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // All
-import Board from '../components/Board.vue';
 import Home from '../components/Home.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
+import Board from '../components/Board.vue';
 import BoardView from '../components/BoardView.vue';
 import BoardForm from '../components/BoardForm.vue';
+import Study from '../components/Study.vue';
+import StudyView from '../components/StudyView.vue';
+import StudyForm from '../components/StudyForm.vue';
 import Profile from '../components/Profile.vue';
 import Gallery from '../components/Gallery.vue';
 import AlbumForm from '../components/AlbumForm.vue';
@@ -39,11 +42,6 @@ const router = new Router({
             component: Home
         },
         {
-            path: '/board',
-            name: '게시판',
-            component: Board
-        },
-        {
             path: '/login',
             name: 'CAPS 로그인',
             component: Login
@@ -54,17 +52,40 @@ const router = new Router({
             component: Register
         },
         {
+            path: '/board',
+            name: '게시판',
+            component: Board
+        },
+        {
             path: '/board/view/:boardId',
             name: '게시글 보기',
             component: BoardView,
             beforeEnter: requireAuth(),
             props: true
         },
-        
         {
             path: '/board/write',
             name: '글 쓰기',
             component: BoardForm,
+            beforeEnter: requireAuth(),
+            props: true
+        },
+        {
+            path: '/study',
+            name: '스터디',
+            component: Study,
+        },
+        {
+            path: '/study/view/:studyId',
+            name: '스터디 보기',
+            component: StudyView,
+            beforeEnter: requireAuth(),
+            props: true
+        },
+        {
+            path: '/study/write',
+            name: '스터디 생성',
+            component: StudyForm,
             beforeEnter: requireAuth(),
             props: true
         },
@@ -117,11 +138,6 @@ const router = new Router({
             name: '카테고리',
             component: Category,
         },
-        // {
-        //     path: '/test',
-        //     name: '테스트',
-        //     component: Test
-        // },
         {
             path: '/noauth',
             name: '권한 필요!',
