@@ -58,7 +58,7 @@
 <script>
 import ConfirmModal from './common/ConfirmModal.vue';
 import StudyService from '@/service/study.js';
-import ProfileImageWithName from '@/components/ProfileImageWithName';
+import ProfileImageWithName from '@/components/ProfileImageWithName.vue';
 // import StudyForm from './StudyForm.vue';
 // import Comments from '@/components/Comments.vue';
 
