@@ -129,7 +129,7 @@ export default {
         fetchUsers() {
             UserService.getUserByQuery({})
                 .then(response => {
-                    const r_ds = response.data;
+                    const r_ds = response.data.filter((e, i) => i < 3);
                     let p_ds = [];
                     const r_ds_length = r_ds.length;
                     for (let i = 0; i < r_ds_length; i++) {

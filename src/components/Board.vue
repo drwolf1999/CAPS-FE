@@ -27,7 +27,8 @@
                     <a href="javascript:void(0)" @click="boardClick(board._id)">{{ board.board_title }}</a>
                 </td>
                 <td>
-                    <a href="javascript:void(0)" @click="categoryClick(board.category._id)">{{ board.category.category_name }}</a>
+                    <a v-if="board.category" href="javascript:void(0)" @click="categoryClick(board.category._id)">{{ board.category.category_name }}</a>
+                    <a v-else href="javascript:void(0)" @click="categoryClick(board.board_category)">{{ board.board_category }}</a>
                 </td>
                 <td>
                     <a href="javascript:void(0)" @click="profileClick(board.user.user_id)">{{ board.user.user_name }}</a>

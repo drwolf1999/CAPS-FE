@@ -3,4 +3,6 @@ export default {
     G_SEMESTER: ['봄 방학', '여름 학기', '가을 방학', '겨울 학기'],
     G_DAY: ['월', '화', '수', '목', '금', '토', '일'],
     G_STUDY_CATEGORY: 1000,
+
+    G_10_CATEGORY_ARRAY: ['회의록', '장부', '전시회 회의록'],
 };
