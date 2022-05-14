@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ProfileImage from '@/components/ProfileImage';
+import ProfileImage from '@/components/ProfileImage.vue';
 
 export default {
     name: 'ProfileImageWithName',
