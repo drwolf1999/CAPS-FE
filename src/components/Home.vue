@@ -48,6 +48,24 @@
                 </div>
             </div>
         </section>
+
+        <div class="modal" tabindex="-1" id="alert-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">알림</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        2022년도 6월 내로 리모델링 작업이 마무리될 예정입니다. 현 사이트는 2022/5/8 데이터를 기준으로 동기화가 되어있습니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button style="display: none;" ref="btn-modal" type="button" data-bs-toggle="modal" data-bs-target="#alert-modal"></button>
     </section>
 </template>
 
@@ -71,6 +89,7 @@ export default {
         };
     },
     mounted() {
+        this.$refs['btn-modal'].click();
         this.fetchBoards(0, 1);
         this.fetchBoards(1, 2);
         this.fetchStudies();
