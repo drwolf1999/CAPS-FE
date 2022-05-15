@@ -11,16 +11,16 @@
         <!-- Links -->
         <div class="collapse navbar-collapse justify-content-end" id="nav-bar">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about-menu" data-bs-toggle="dropdown" aria-expanded="false">ABOUT</a>
-                    <div class="dropdown-menu dropdown-menu-dark">
-                        <router-link to="/" class="nav-link">CAPS 소개</router-link>
-                        <router-link to="/" class="nav-link">CAPS 연혁</router-link>
-                        <router-link to="/" class="nav-link">CAPS 회칙</router-link>
-                        <router-link to="/" class="nav-link">CAPS 집행부 소개</router-link>
-                        <router-link to="/" class="nav-link">CAPS 홈페이지 정보</router-link>
-                    </div>
-                </li>
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about-menu" data-bs-toggle="dropdown" aria-expanded="false">ABOUT</a>-->
+<!--                    <div class="dropdown-menu dropdown-menu-dark">-->
+<!--                        <router-link to="/" class="nav-link">CAPS 소개</router-link>-->
+<!--                        <router-link to="/" class="nav-link">CAPS 연혁</router-link>-->
+<!--                        <router-link to="/" class="nav-link">CAPS 회칙</router-link>-->
+<!--                        <router-link to="/" class="nav-link">CAPS 집행부 소개</router-link>-->
+<!--                        <router-link to="/" class="nav-link">CAPS 홈페이지 정보</router-link>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="study-menu" data-bs-toggle="dropdown" aria-expanded="false">STUDY</a>
                     <div class="dropdown-menu dropdown-menu-dark">
@@ -51,7 +51,7 @@
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="utils-menu" data-bs-toggle="dropdown" aria-expanded="false">UTIL</a>
                     <div class="dropdown-menu dropdown-menu-dark">
                         <router-link to="/wiki" class="nav-link">CAPS 위키</router-link>
-                        <a href="http://caps.dongguk.edu:3000" class="nav-link">CAPS hub</a>
+<!--                        <a href="http://caps.dongguk.edu:3000" class="nav-link">CAPS hub</a>-->
                     </div>
                 </li>
                 <!-- Dropdown -->

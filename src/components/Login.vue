@@ -19,7 +19,8 @@
                 </button>
             </form>
             <hr />
-            <p> 아직 회원이 아니시라면? <router-link to="/register" class="badge badge-info">회원 가입</router-link></p>
+            <p> 아직 회원이 아니시라면? <router-link to="/register" class="badge bg-info">회원 가입</router-link></p>
+            <p> 데이터 이전으로 임시로 비밀번호는 ID + !@!@ 로 설정되었습니다.</p>
         </div>
     </div>
 </div>

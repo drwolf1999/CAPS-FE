@@ -16,7 +16,7 @@ import Gallery from '../components/Gallery.vue';
 import AlbumForm from '../components/AlbumForm.vue';
 import Wiki from '../components/Wiki.vue';
 import WikiForm from '../components/WikiForm.vue';
-import Test from '../components/Test.vue';
+import ComingSoon from '../components/ComingSoon.vue';
 
 // Admin
 import Category from '../components/Admin/Category.vue';
@@ -35,7 +35,7 @@ const requireAuth = () => (from, to, next) => {
 };
 
 const router = new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [{
             path: '/',
             name: 'CAPS',
@@ -92,12 +92,14 @@ const router = new Router({
         {
             path: '/profile',
             name: '내 프로필',
-            component: Profile
+            component: Profile,
+            beforeEnter: requireAuth(),
         },
         {
             path: '/profile/:userId',
             name: '프로필',
             component: Profile,
+            beforeEnter: requireAuth(),
             props: true
         },
         {
@@ -129,9 +131,14 @@ const router = new Router({
             beforeEnter: requireAuth(),
         },
         {
-            path: '/test',
-            name: '테스트',
-            component: Test
+            path: '/notification',
+            name: '알림',
+            component: ComingSoon
+        },
+        {
+            path: '/admin/user',
+            name: '사용자',
+            component: ComingSoon
         },
         {
             path: '/admin/categories',

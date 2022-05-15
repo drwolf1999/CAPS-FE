@@ -17,8 +17,8 @@
             </div>
         </div>
 
-        <div class="post-content">
-            {{ board.board_content }}
+        <div class="post-content" v-html="board.board_content">
+<!--            {{ board.board_content }}-->
         </div>
 
         <div v-if="getUserId === board.user._id" class="post-buttons">

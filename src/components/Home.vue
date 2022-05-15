@@ -13,9 +13,9 @@
                             </h4>
                             <div class="card-text" v-if="Array.isArray(preview[ij])">
                                 <template v-if="preview[ij].length > 0">
-                                    <a v-for="(e, idx) in preview[ij]" v-bind:key="`e-${idx}`"
+                                    <router-link v-for="(e, idx) in preview[ij]" v-bind:key="`e-${idx}`"
                                        class="text-black preview-a"
-                                       :href="e.url"><strong>{{ e.name }}</strong></a>
+                                       :to="e.url"><strong>{{ e.name }}</strong></router-link>
                                 </template>
                                 <div v-else class="">내용이 없습니다.</div>
                             </div>
