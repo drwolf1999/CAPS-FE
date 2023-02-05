@@ -35,7 +35,7 @@ const requireAuth = () => (from, to, next) => {
 };
 
 const router = new Router({
-    // mode: 'history',
+    mode: 'history',
     routes: [{
             path: '/',
             name: 'CAPS',

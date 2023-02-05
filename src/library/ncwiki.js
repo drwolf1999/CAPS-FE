@@ -12,6 +12,7 @@ export default class NCWIKI {
         if (footnote !== '') {
             footnote = '<hr>' + footnote;
         }
+        contents = await this.getLinks(contents);
         content = await this.getLinks(content);
         /// 서식 처리
         content = this.convertStringToHtmlTag(content, WikiTag.BOLD, WikiTag.BOLD, '<b>');

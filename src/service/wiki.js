@@ -26,4 +26,10 @@ export default {
                 });
         });
     },
+    getLiveSearchList() {
+        return axios.get(RestAPI.SERVER_DOMAIN + 'wiki/list')
+            .catch(error => {
+                console.log(error);
+            });
+    }
 };
